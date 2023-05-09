@@ -5,5 +5,6 @@ class Program
     {
         string message = "Welcome to the NHK!";
 
-        Console.WriteLine(message);    }
+        Console.WriteLine(message);    
+    }
 }
