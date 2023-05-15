@@ -5,26 +5,35 @@ class Program
 {
     static void Main(string[] args)
     {
-        GerenciadorBonificacao g = new GerenciadorBonificacao();
-
-        Funcionario danHeng = new Funcionario();
-        danHeng.Nome = "Dan Heng";
-        danHeng.CPF = "123.456.789-10";
-        danHeng.Salario = 2000;
-        Console.WriteLine(danHeng.Nome + ": R$" + danHeng.Salario);
-		Console.WriteLine("Multiplicador de bonificação: " + danHeng.Bonificacao);
-        Console.WriteLine(danHeng.Nome + ": R$" + danHeng.GetBonificacao());
-        g.Registrar(danHeng);
-
-        Diretor stelle = new Diretor();
-        stelle.Nome = "Stelle";
-        stelle.CPF = "109.876.543-21";
-        stelle.Salario = 5000;
-        Console.WriteLine(stelle.Nome + ": R$" + stelle.Salario);
-		Console.WriteLine("Multiplicador de bonificação: " + stelle.Bonificacao);
-        Console.WriteLine(stelle.Nome + ": R$" + stelle.GetBonificacao());
-        g.Registrar(stelle);
-		
-        Console.WriteLine("Total de bonificações: R$" + g._totalBonificacao);
+        CalcularBonificacao();
     }
+
+	public static void CalcularBonificacao()
+	{
+		GerenciadorBonificacao g = new GerenciadorBonificacao();
+
+		Designer march = new Designer("235.874.254-69");
+		march.Nome = "March";
+
+		Diretor himeko = new Diretor("000.000.000-01");
+		himeko.Nome = "Himeko";
+
+		Auxiliar stelle = new Auxiliar("999.999.999-99");
+		stelle.Nome = "Stelle";
+
+		GerenteDeConta welt = new GerenteDeConta("123.456.789-10");
+		welt.Nome = "Welt";
+
+		Desenvolvedor danHeng = new Desenvolvedor("109.876.543-21");
+		danHeng.Nome = "Dan Heng";
+
+		g.Registrar(march);
+		g.Registrar(welt);
+		g.Registrar(stelle);
+		g.Registrar(himeko);
+		g.Registrar(danHeng);
+
+		Console.WriteLine("Total de bonificações do mês: R${0}"
+			, g.GetTotalBonificacao());
+	}
 }
