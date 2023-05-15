@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Funcionarios
 {
-    public class Diretor
+    public class Diretor : Funcionario
     {
-        public string Nome { get; set; }
-        public string CPF { get; set; }
-        public double Salario { get; set; }
+		public new double Bonificacao { get; private set; } = 1;
 
-        public double GetBonificacao()
-        {
-            return Salario;
-        }
+		public override double GetBonificacao()
+		{
+			return Salario + base.GetBonificacao();
+		}
     }
 }

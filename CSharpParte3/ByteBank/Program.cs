@@ -11,6 +11,8 @@ class Program
         danHeng.Nome = "Dan Heng";
         danHeng.CPF = "123.456.789-10";
         danHeng.Salario = 2000;
+        Console.WriteLine(danHeng.Nome + ": R$" + danHeng.Salario);
+		Console.WriteLine("Multiplicador de bonificação: " + danHeng.Bonificacao);
         Console.WriteLine(danHeng.Nome + ": R$" + danHeng.GetBonificacao());
         g.Registrar(danHeng);
 
@@ -18,11 +20,11 @@ class Program
         stelle.Nome = "Stelle";
         stelle.CPF = "109.876.543-21";
         stelle.Salario = 5000;
+        Console.WriteLine(stelle.Nome + ": R$" + stelle.Salario);
+		Console.WriteLine("Multiplicador de bonificação: " + stelle.Bonificacao);
         Console.WriteLine(stelle.Nome + ": R$" + stelle.GetBonificacao());
         g.Registrar(stelle);
-
+		
         Console.WriteLine("Total de bonificações: R$" + g._totalBonificacao);
-
-
     }
 }
