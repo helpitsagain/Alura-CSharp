@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ByteBank.Sistema;
 
 namespace ByteBank.Funcionarios
 {
-    public class Diretor : Funcionario
+    public class Diretor : Autenticavel 
     {
 		public new double Bonificacao { get; private set; } = 1;
 
@@ -22,5 +23,5 @@ namespace ByteBank.Funcionarios
 		{
 			return Salario * 0.5;
 		}
-    }
+	}
 }
