@@ -6,11 +6,10 @@ using ByteBank.Sistema;
 
 namespace ByteBank.Funcionarios
 {
-    public class GerenteDeConta : Autenticavel
+    public class GerenteDeConta : Funcionario, Autenticavel
     {
-        public GerenteDeConta(string cpf) : base(4000, cpf)
-		{
-		}
+		public string? Senha { get; set; }
+        public GerenteDeConta(string cpf) : base(4000, cpf){}
 
 		public override void AumentarSalario()
 		{

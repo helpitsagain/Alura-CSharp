@@ -50,7 +50,11 @@ class Program
 		welt.Nome = "Welt";
 		welt.Senha = "express";
 
+		ParceiroComercial tingyun  = new ParceiroComercial();
+		tingyun.Senha = "xinzhou";
+
 		sistemaInterno.Logar(himeko, "astral");		
 		sistemaInterno.Logar(welt, "express");		
+		sistemaInterno.Logar(tingyun, "xinzhou");		
 	}
 }

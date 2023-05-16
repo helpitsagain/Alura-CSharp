@@ -6,13 +6,12 @@ using ByteBank.Sistema;
 
 namespace ByteBank.Funcionarios
 {
-    public class Diretor : Autenticavel 
+    public class Diretor : Funcionario, Autenticavel
     {
+		public string? Senha { get; set; }
 		public new double Bonificacao { get; private set; } = 1;
 
-		public Diretor( string cpf) : base(5000, cpf) 
-		{
-		}
+		public Diretor( string cpf) : base(5000, cpf){}
 
 		public override void AumentarSalario()
 		{
