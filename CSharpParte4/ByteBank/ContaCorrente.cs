@@ -9,9 +9,9 @@ namespace ByteBank
 	{
 		public static double TaxaOperacao { get; private set; }
 		public static int QuantidadeContasCriadas { get; private set; }
-		public Cliente Titular{ get; set; } = new Cliente("");
-	    public int Agencia{ get; set; }
-	    public int Conta{ get; set; }
+		public Cliente? Titular{ get; private set; }
+		public int Agencia { get; }
+		public int Conta { get; }
 	    private double _saldo = 100;
 		public double Saldo 
 		{
@@ -28,10 +28,21 @@ namespace ByteBank
 
 		public ContaCorrente (int agencia, int conta)
 		{
+			if (agencia <= 0)
+			{
+				ArgumentException excecao = new ArgumentException("Agência deve ser maior do que 0.", nameof(agencia));
+				throw excecao;
+			}
+			if (conta <= 0)
+			{
+				ArgumentException excecao = new ArgumentException("Número deve ser maior do que 0.", nameof(conta));
+				throw excecao;
+			}
+
 			Agencia = agencia;
 			Conta = conta;
-			TaxaOperacao = 30 / QuantidadeContasCriadas;
 			QuantidadeContasCriadas++;
+			TaxaOperacao = 30 / QuantidadeContasCriadas;
 		}
 
 	    public bool Sacar(double valor)

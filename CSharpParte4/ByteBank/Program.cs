@@ -6,20 +6,32 @@
     	{
 			try
 			{
-				Metodo();
+				ContaCorrente cc = new ContaCorrente(0, 0);
+
+
+				Console.WriteLine("Execução finalizada.");
 			}
-			catch(Exception e)
+			catch(ArgumentException e)
 			{
-				Console.WriteLine("Aconteceu um erro!");
-				Console.WriteLine(e.Message);
+				Console.WriteLine("Aconteceu uma exceção do tipo ArgumentException no argumento " + e.ParamName);
+				Console.WriteLine(e.Message + "\n");
 			}
+			
+			// Metodo();
     	}
-    //Teste com a cadeia de chamada:
-    //Metodo -> TestaDivisao -> Dividir
+    // Teste com a cadeia de chamada:
+    // Metodo -> TestaDivisao -> Dividir
         
 		static void Metodo()
 		{
-			TestaDivisao(0);
+			try
+			{
+				TestaDivisao(0);
+			}
+			catch (DivideByZeroException e)
+			{
+				Console.WriteLine(e.Message + "\n");
+			}
 		}
 		
 		static void TestaDivisao(int divisor)
@@ -30,16 +42,7 @@
 		
 		static int Dividir(int numero, int divisor)
 		{
-			try
-			{
-				return numero / divisor;
-			}
-			catch (DivideByZeroException)
-			{
-				Console.WriteLine("Exceção com número = " + numero + " e divisor = " + divisor
-					+ " capturada na função Dividir.");
-				throw;
-			}
+			return numero / divisor;
 		}
     }
 }
