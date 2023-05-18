@@ -6,6 +6,45 @@
     	{
 			try
 			{
+			CarregarContas();
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("CATCH NO MÉTODO MAIN");
+			}
+    	}
+
+		private static void CarregarContas()
+		{
+			using(LeitorDeArquivo leitor = new LeitorDeArquivo("teste.txt"))
+			{
+				leitor.LerProximaLinha();
+			}
+			
+// ---------------------------------------------------------------------------
+			// LeitorDeArquivo leitor = null;
+			// try
+			// {
+			// 	leitor = new LeitorDeArquivo("contas.txt");
+
+			// 	leitor.LerProximaLinha();
+			// 	leitor.LerProximaLinha();
+			// 	leitor.LerProximaLinha();
+			// } catch(IOException) {
+			// 	Console.WriteLine("Exceção do tipo IOException capturada.");
+			// } finally {
+			// 	Console.WriteLine("Executando o finally.");
+			// 	if (leitor != null)
+			// 	{
+			// 		leitor.Fechar();				
+			// 	}
+			// }
+		}
+		
+		private static void TestaInnerException()
+		{
+			try
+			{
 				ContaCorrente cStelle = new ContaCorrente(42, 1337);
 				cStelle.Titular.Nome = "Stelle";
 				ContaCorrente cMarch = new ContaCorrente(42, 1338);
@@ -35,6 +74,6 @@
 			{
 				Console.WriteLine($"{e.Message}\n{e.StackTrace}");
 			}
-    	}
+		}
     }
 }
