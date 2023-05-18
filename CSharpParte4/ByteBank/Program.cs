@@ -11,7 +11,10 @@
 				ContaCorrente cMarch = new ContaCorrente(42, 1338);
 				cMarch.Titular.Nome = "March";
 
-				cStelle.Transferir(-50, cMarch);
+				// cStelle.Transferir(-500, cMarch);
+				// cStelle.Transferir(500, cMarch);
+				// cStelle.Sacar(-200);
+				// cStelle.Sacar(200);
 
 				Console.WriteLine("Execução finalizada.\n");
 			}
@@ -28,10 +31,9 @@
 				}
 				Console.WriteLine(e.Message + "\n");
 			}
-			catch (SaldoInsuficienteException e)
+			catch (OperacaoFinanceiraException e)
 			{
-				Console.WriteLine("Exceção do tipo SaldoInsuficienteException");
-				Console.WriteLine(e.Message);
+				Console.WriteLine($"{e.Message}\n{e.StackTrace}");
 			}
     	}
     }

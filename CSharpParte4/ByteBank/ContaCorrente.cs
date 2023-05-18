@@ -8,6 +8,8 @@ namespace ByteBank
 	public class ContaCorrente
 	{
 		public static double TaxaOperacao { get; private set; }
+		public int ContadorSaquesNaoPermitidos { get; private set; }
+		public int ContadorTransferenciasNaoPermitidas { get; private set; }
 		public static int QuantidadeContasCriadas { get; private set; }
 		public Cliente Titular{ get; private set; } = new Cliente();
 		public int Agencia { get; }
@@ -21,7 +23,7 @@ namespace ByteBank
 			}
 			set
 			{ 
-				if (value < 0) return; 
+				if (value < 0) { return; } 
 				_saldo = value; 
 			} 
 		}
@@ -53,6 +55,7 @@ namespace ByteBank
 			}
 	        if (valor > this._saldo)
 	        {
+				ContadorSaquesNaoPermitidos++;
 	            throw new SaldoInsuficienteException(valor, this.Saldo);
 	        }
 
@@ -79,7 +82,16 @@ namespace ByteBank
 			{
 				throw new ArgumentException("Valor inválido. Transferência deve ser de um valor positivo.", nameof(valor));
 			}
+
+			try
+			{
 			this.Sacar(valor);
+			}
+			catch (SaldoInsuficienteException e)
+			{
+				ContadorTransferenciasNaoPermitidas++;
+				throw new OperacaoFinanceiraException("Operação não realizada.", e);
+			}
 			destino.Depositar(valor);
 		}
 
