@@ -9,7 +9,7 @@ namespace ByteBank
 	{
 		public static double TaxaOperacao { get; private set; }
 		public static int QuantidadeContasCriadas { get; private set; }
-		public Cliente? Titular{ get; private set; }
+		public Cliente Titular{ get; private set; } = new Cliente();
 		public int Agencia { get; }
 		public int Conta { get; }
 	    private double _saldo = 100;
@@ -45,17 +45,19 @@ namespace ByteBank
 			TaxaOperacao = 30 / QuantidadeContasCriadas;
 		}
 
-	    public bool Sacar(double valor)
+	    public void Sacar(double valor)
 	    {
+			if (valor < 0)
+			{
+				throw new ArgumentException("Valor inválido. Saque deve ser de um valor positivo.", nameof(valor));
+			}
 	        if (valor > this._saldo)
 	        {
-	            Console.WriteLine("Saldo insuficiente.");
-	            return false;
+	            throw new SaldoInsuficienteException(valor, this.Saldo);
 	        }
 
 	        this._saldo -= valor;
-	        Console.WriteLine("Saque efetuado de " + this.Titular + ". Saldo restante: R$" + this._saldo);
-	        return true;
+	        Console.WriteLine($"Saque efetuado de {this.Titular.Nome}. Saldo restante: R${this._saldo}");
 	    }
 
 		public bool Depositar(double valor)
@@ -67,19 +69,18 @@ namespace ByteBank
 			}
 
 			this._saldo += valor;
-			Console.WriteLine("Depósito efetuado para " + this.Titular + ". Novo saldo: R$" + this._saldo);
+			Console.WriteLine($"Depósito efetuado para {this.Titular.Nome}. Novo saldo: R${this._saldo}");
 			return true;
 		}
 		
-		public bool Transferir(double valor, ContaCorrente destino)
+		public void Transferir(double valor, ContaCorrente destino)
 		{
-			if (!this.Sacar(valor))
+			if (valor < 0)
 			{
-				return false;
+				throw new ArgumentException("Valor inválido. Transferência deve ser de um valor positivo.", nameof(valor));
 			}
-
+			this.Sacar(valor);
 			destino.Depositar(valor);
-			return true;
 		}
 
 // Getters & Setters não precisam ser definidos aqui, podendo ser inseridos
