@@ -1,4 +1,4 @@
-﻿namespace ByteBank
+﻿namespace ByteBank.ContaCorrente
 {
     class Program
     {
