@@ -6,13 +6,8 @@ using ByteBank.Modelos.Funcionarios;
 
 namespace ByteBank.Modelos.Sistema
 {
-    public interface Autenticavel
+    public interface IAutenticavel
     {
-		public string? Senha { get; set; }
-
-		public bool Autenticar(string senha)
-		{
-			return this.Senha == senha;
-		}
+		public bool Autenticar(string senha);
     }
 }

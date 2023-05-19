@@ -6,9 +6,9 @@ using ByteBank.Modelos.Sistema;
 
 namespace ByteBank.Modelos.Funcionarios
 {
-    public class Diretor : Funcionario, Autenticavel
+    public class Diretor : FuncionarioAutenticavel
     {
-		public string? Senha { get; set; }
+		// public string? Senha { get; set; }
 		public new double Bonificacao { get; private set; } = 1;
 
 		public Diretor( string cpf) : base(5000, cpf){}
@@ -18,7 +18,7 @@ namespace ByteBank.Modelos.Funcionarios
 			Salario *= 1.15;
 		}
 
-		public override double GetBonificacao()
+		internal protected override double GetBonificacao()
 		{
 			return Salario * 0.5;
 		}

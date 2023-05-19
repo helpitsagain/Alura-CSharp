@@ -6,7 +6,7 @@ using ByteBank.Modelos.Sistema;
 
 namespace ByteBank.Modelos.Funcionarios
 {
-    public class GerenteDeConta : Funcionario, Autenticavel
+    public class GerenteDeConta : FuncionarioAutenticavel
     {
 		public string? Senha { get; set; }
         public GerenteDeConta(string cpf) : base(4000, cpf){}
@@ -16,7 +16,7 @@ namespace ByteBank.Modelos.Funcionarios
 			Salario *= 1.05;
 		}
 
-		public override double GetBonificacao()
+		internal protected override double GetBonificacao()
 		{
 			return Salario * 0.25;
 		}
