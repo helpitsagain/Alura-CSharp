@@ -1,4 +1,5 @@
-﻿using ByteBank.Modelos;
+﻿using System.ComponentModel.DataAnnotations;
+using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
 using ByteBank.Modelos.Sistema;
 using ByteBank.SistemaAgencia;
@@ -11,29 +12,24 @@ using ByteBank.SistemaAgencia;
 // Console.WriteLine(String.IsNullOrEmpty(vazia));
 // Console.WriteLine(String.IsNullOrEmpty(naoNula));
 
-string palavra = "moedaOrigem=dolar&moedaDestino=real";
-Console.WriteLine($"Palavra:.............................{palavra}");
-string nomeArgumento = "moedaOrigem";
-// string nomeArgumento = "moedaDestino";
-Console.WriteLine($"Argumento:...........................{nomeArgumento}\n");
+////////////////////////////////////////////////////////////
+// Remove & ToLower & ToUpper
+string urlParametros = "http://www.bytebank.com.br/cambio?moedaOrigem=real&moedaDestino=dolar&valor=1500";
 
-int indiceArgumento = palavra.IndexOf(nomeArgumento);
-Console.WriteLine($"Índice do argumento:.................{indiceArgumento}");
-string substringArgumento = palavra.Substring(indiceArgumento);
-Console.WriteLine($"Substring com índice do argumento:...{substringArgumento}\n");
+ExtratorArgumentosURL ext = new ExtratorArgumentosURL(urlParametros);
 
-int indiceValor = nomeArgumento.Length + 1;
-Console.WriteLine($"Índice do valor:.....................{indiceValor}");
-string substringValor = substringArgumento.Substring(indiceValor);
-Console.WriteLine($"Substring com índice do valor:.......{substringValor}\n");
+string valor = ext.GetValor("moedaOrigem");
+Console.WriteLine($"Valor de moedaOrigem: {valor}");
 
-int fimArgumento = substringValor.IndexOf('&');
-Console.WriteLine($"Fim do argumento na substring:.......{fimArgumento}");
-string valorArgumento;
-if (fimArgumento > 0)
-{
-	valorArgumento = substringValor.Substring(0, fimArgumento);
-} else {
-	valorArgumento = substringArgumento.Substring(indiceValor);
-}
-Console.WriteLine($"Valor do argumento:..................{valorArgumento}");
+valor = ext.GetValor("moedaDestino");
+Console.WriteLine($"Valor de moedaDestino: {valor}");
+
+valor = ext.GetValor("valor");
+Console.WriteLine($"Valor de valor: {valor}");
+
+////////////////////////////////////////////////////////////
+// StartsWith & EndsWith
+string urlByteBank = "http://www.bytebank.com.br/cambio";
+Console.WriteLine(urlByteBank.StartsWith("http://www.bytebank"));
+Console.WriteLine(urlByteBank.EndsWith("cambio/"));
+Console.WriteLine(urlByteBank.Contains("bytebank"));
