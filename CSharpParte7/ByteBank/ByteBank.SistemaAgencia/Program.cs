@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -19,26 +20,21 @@ internal class Program
 		ListaContaCorrente lista = new ListaContaCorrente();
 		ContaCorrente contaDoLuc = new ContaCorrente(2901, 98976);
 
-		lista.Adicionar(contaDoLuc);
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
+		ContaCorrente[] contas = new ContaCorrente[]
+		{
+			contaDoLuc,
+			new ContaCorrente(42,1338),
+			new ContaCorrente(42,1339),
+			new ContaCorrente(42,1340),
+			new ContaCorrente(42,1341),
+			new ContaCorrente(42,1342),
+			new ContaCorrente(42,1343),
+			new ContaCorrente(42,1344)
+		};
 
-		lista.MeuMetodo(numero: 5);
-
-		lista.ExibirLista();
-
-		lista.Remover(contaDoLuc);
+		lista.AdicionarVarios(contas);
 
 		lista.ExibirLista();
-
-
-		SomarNumeros(new int[] { 1, 2, 3, 4, 5});
 	}
 
 	static void SomarNumeros(int[] lista)
@@ -49,6 +45,16 @@ internal class Program
 			int numero2 = lista[i + 1];
 			Console.WriteLine($"{numero1} + {numero2} = {numero1 + numero2}");
 		}
+	}
+
+	static void SomarVarios(params int[] numeros)
+	{
+		int somatorio = 0;
+		foreach(int numero in numeros)
+		{
+			somatorio += numero;
+		}
+		Console.WriteLine($"Somatório = {somatorio}");
 	}
 
 	static void TestaArrayContaCorrente()
