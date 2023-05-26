@@ -26,7 +26,41 @@ namespace ByteBank.SistemaAgencia
 			_proximaPosicao++;
 		}
 
-		private void VerificarCapacidade(int tamanhoNecessario){
+		public void Remover(ContaCorrente item)
+		{
+			int indiceItem = -1;
+			for(int i = 0; i < this._proximaPosicao - 1; i++)
+			{
+				var itemAtual = _itens[i];
+				
+				if(itemAtual.Equals(item))
+				{
+					indiceItem = i;
+					break;
+				}
+			}
+
+			for (int i = indiceItem; i < _proximaPosicao; i++)
+			{
+				_itens[i] = _itens[i+1];
+			}
+
+			_proximaPosicao--;
+			_itens[_proximaPosicao] = null;
+		}
+
+		public void ExibirLista()
+		{
+			Console.WriteLine("\nExibindo lista de contas...");
+			for(int i = 0; i < _proximaPosicao; i++)
+			{
+				var conta = _itens[i];
+				Console.WriteLine($"Conta no índice {i}: número {conta.Conta}, agência {conta.Agencia}");
+			}
+		}
+
+		private void VerificarCapacidade(int tamanhoNecessario)
+		{
 			if(_itens.Length >= tamanhoNecessario)
 			{
 				return;
@@ -43,6 +77,11 @@ namespace ByteBank.SistemaAgencia
 			}
 
 			_itens = novoArray;
+		}
+
+		public void MeuMetodo (string texto = "gsdfggs", int numero = 5)
+		{
+			
 		}
     }
 }

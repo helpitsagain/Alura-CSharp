@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
@@ -15,7 +17,9 @@ internal class Program
 	private static void Main(string[] args)
 	{
 		ListaContaCorrente lista = new ListaContaCorrente();
+		ContaCorrente contaDoLuc = new ContaCorrente(2901, 98976);
 
+		lista.Adicionar(contaDoLuc);
 		lista.Adicionar(new ContaCorrente(42, 1337));
 		lista.Adicionar(new ContaCorrente(42, 1337));
 		lista.Adicionar(new ContaCorrente(42, 1337));
@@ -24,14 +28,27 @@ internal class Program
 		lista.Adicionar(new ContaCorrente(42, 1337));
 		lista.Adicionar(new ContaCorrente(42, 1337));
 		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
-		lista.Adicionar(new ContaCorrente(42, 1337));
+
+		lista.MeuMetodo(numero: 5);
+
+		lista.ExibirLista();
+
+		lista.Remover(contaDoLuc);
+
+		lista.ExibirLista();
+
+
+		SomarNumeros(new int[] { 1, 2, 3, 4, 5});
+	}
+
+	static void SomarNumeros(int[] lista)
+	{
+		for (int i = 0; i < lista.Length -1; i += 2)
+		{
+			int numero1 = lista[i];
+			int numero2 = lista[i + 1];
+			Console.WriteLine($"{numero1} + {numero2} = {numero1 + numero2}");
+		}
 	}
 
 	static void TestaArrayContaCorrente()
