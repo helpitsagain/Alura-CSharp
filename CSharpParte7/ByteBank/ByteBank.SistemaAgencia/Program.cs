@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -17,24 +18,31 @@ internal class Program
 {
 	private static void Main(string[] args)
 	{
-		ListaContaCorrente lista = new ListaContaCorrente();
-		ContaCorrente contaDoLuc = new ContaCorrente(2901, 98976);
+		Lista<int> listaIdades = new Lista<int>();
+		listaIdades.AdicionarVarios(15, 18, 21, 26, 29);
 
-		ContaCorrente[] contas = new ContaCorrente[]
+		for(int i = 0; i < listaIdades.Tamanho; i++)
 		{
-			contaDoLuc,
-			new ContaCorrente(42,1338),
-			new ContaCorrente(42,1339),
-			new ContaCorrente(42,1340),
-			new ContaCorrente(42,1341),
-			new ContaCorrente(42,1342),
-			new ContaCorrente(42,1343),
-			new ContaCorrente(42,1344)
-		};
+			int idade = listaIdades[i];
+			Console.WriteLine($"Idade no index {i}: {idade}");
+		}
+	}
 
-		lista.AdicionarVarios(contas);
+	static void TestaListaObject()
+	{
+		ListaObject listaIdades = new ListaObject();
 
-		lista.ExibirLista();
+		listaIdades.Adicionar(15);
+		listaIdades.Adicionar(21);
+		listaIdades.Adicionar(19);
+		listaIdades.AdicionarVarios(42, 31, 18, 9);
+
+		listaIdades.Adicionar("String é um tipo inválido");
+		for(int i = 0; i < listaIdades.Tamanho; i++)
+		{
+			int idade = (int)listaIdades[i];
+			Console.WriteLine($"Idade no índice {i}: {idade}");
+		}
 	}
 
 	static void SomarNumeros(int[] lista)
@@ -55,6 +63,34 @@ internal class Program
 			somatorio += numero;
 		}
 		Console.WriteLine($"Somatório = {somatorio}");
+	}
+
+	static void TestaListaContaCorrente()
+	{
+		ListaContaCorrente lista = new ListaContaCorrente();
+		ContaCorrente contaDoLuc = new ContaCorrente(2901, 98976);
+
+		ContaCorrente[] contas = new ContaCorrente[]
+		{
+			contaDoLuc,
+			new ContaCorrente(42,1338),
+			new ContaCorrente(42,1339),
+			new ContaCorrente(42,1340),
+			new ContaCorrente(42,1341),
+			new ContaCorrente(42,1342),
+			new ContaCorrente(42,1343),
+			new ContaCorrente(42,1344)
+		};
+
+		lista.AdicionarVarios(contas);
+		lista.ExibirLista();
+
+		ContaCorrente[] contasUmCincoQuatro = lista[1, 5, 4];
+
+		foreach (var conta in contasUmCincoQuatro)
+		{
+			Console.WriteLine($"{conta.Agencia} / {conta.Conta}");
+		}
 	}
 
 	static void TestaArrayContaCorrente()
