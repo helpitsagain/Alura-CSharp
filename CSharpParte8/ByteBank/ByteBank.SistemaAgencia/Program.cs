@@ -40,12 +40,12 @@ internal class Program
 
 		List<ContaCorrente> contas = new List<ContaCorrente>();
 
-		contas.AdicionarVarios(new ContaCorrente(42, 1337),
-							   new ContaCorrente(42, 1338), 
-							   new ContaCorrente(42, 1339), 
-							   new ContaCorrente(42, 1340), 
-							   new ContaCorrente(42, 1341), 
-							   new ContaCorrente(42, 1342));
+		contas.AdicionarVarios(new ContaCorrente(42, 1337)
+							 , new ContaCorrente(42, 1338) 
+							 , new ContaCorrente(42, 1339) 
+							 , new ContaCorrente(42, 1340) 
+							 , new ContaCorrente(42, 1341) 
+							 , new ContaCorrente(42, 1342));
 
 		foreach (ContaCorrente conta in contas)
 		{
