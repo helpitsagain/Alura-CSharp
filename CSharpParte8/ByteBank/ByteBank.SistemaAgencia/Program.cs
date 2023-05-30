@@ -17,55 +17,46 @@ internal class Program
 {
 	private static void Main(string[] args)
 	{
-		List<int> idades = new List<int>();
-		idades.Add(1);	
-		idades.Add(11);	
-		idades.Add(21);	
-		idades.Add(31);	
-		idades.Add(41);	
-		idades.Add(51);	
-		idades.Add(61);	
-		idades.Add(71);	
-		idades.Add(81);	
-		idades.Add(91);	
+		var nomes = new List<string>()
+		{
+			"Stelle",
+			"March",
+			"Dan Heng",
+			"Welt",
+			"Himeko"
+		};
 
-		idades.AdicionarVarios(2, 12, 22, 32, 42, 52, 62, 72, 82, 92);
+		foreach (var nome in nomes)
+		{
+			Console.WriteLine(nome);
+		}
+		Console.WriteLine("-------------");
+		nomes.Sort();
+
+		foreach (var nome in nomes)
+		{
+			Console.WriteLine(nome);
+		}
+		
+
+
+		Console.WriteLine("\n-------------");
+		var idades = new List<int>();
+		
+		idades.AdicionarVarios(10, 20, 30);
+		idades.AdicionarVarios(1, 99);
 
 		for(int i = 0; i < idades.Count; i++)
 		{
 			Console.WriteLine(idades[i]);
 		}
 
-		List<ContaCorrente> contas = new List<ContaCorrente>();
+		idades.Sort();
 
-		contas.AdicionarVarios(new ContaCorrente(42, 1337)
-							 , new ContaCorrente(42, 1338) 
-							 , new ContaCorrente(42, 1339) 
-							 , new ContaCorrente(42, 1340) 
-							 , new ContaCorrente(42, 1341) 
-							 , new ContaCorrente(42, 1342));
-
-		foreach (ContaCorrente conta in contas)
+		Console.WriteLine("-------------");
+		for(int i = 0; i < idades.Count; i++)
 		{
-			Console.WriteLine(conta.Conta);
-		}
-
-	}
-
-	static void TestaListaObject()
-	{
-		ListaObject listaIdades = new ListaObject();
-
-		listaIdades.Adicionar(15);
-		listaIdades.Adicionar(21);
-		listaIdades.Adicionar(19);
-		listaIdades.AdicionarVarios(42, 31, 18, 9);
-
-		listaIdades.Adicionar("String é um tipo inválido");
-		for(int i = 0; i < listaIdades.Tamanho; i++)
-		{
-			int idade = (int)listaIdades[i];
-			Console.WriteLine($"Idade no índice {i}: {idade}");
+			Console.WriteLine(idades[i]);
 		}
 	}
 
@@ -79,42 +70,15 @@ internal class Program
 		}
 	}
 
-	static void SomarVarios(params int[] numeros)
+	static int SomarVarios(params int[] numeros)
 	{
 		int somatorio = 0;
 		foreach(int numero in numeros)
 		{
 			somatorio += numero;
 		}
-		Console.WriteLine($"Somatório = {somatorio}");
-	}
 
-	static void TestaListaContaCorrente()
-	{
-		ListaContaCorrente lista = new ListaContaCorrente();
-		ContaCorrente contaDoLuc = new ContaCorrente(2901, 98976);
-
-		ContaCorrente[] contas = new ContaCorrente[]
-		{
-			contaDoLuc,
-			new ContaCorrente(42,1338),
-			new ContaCorrente(42,1339),
-			new ContaCorrente(42,1340),
-			new ContaCorrente(42,1341),
-			new ContaCorrente(42,1342),
-			new ContaCorrente(42,1343),
-			new ContaCorrente(42,1344)
-		};
-
-		lista.AdicionarVarios(contas);
-		lista.ExibirLista();
-
-		ContaCorrente[] contasUmCincoQuatro = lista[1, 5, 4];
-
-		foreach (var conta in contasUmCincoQuatro)
-		{
-			Console.WriteLine($"{conta.Agencia} / {conta.Conta}");
-		}
+		return somatorio;
 	}
 
 	static void TestaArrayContaCorrente()
