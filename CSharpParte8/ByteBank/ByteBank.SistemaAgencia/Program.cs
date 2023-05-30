@@ -6,12 +6,12 @@ using System.Numerics;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using ByteBank.Extensoes;
+// using ByteBank.Extensoes;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
 using ByteBank.Modelos.Sistema;
 using ByteBank.SistemaAgencia;
-
+using ByteBank.SistemaAgencia.Extensoes;
 
 internal class Program
 {

@@ -5,10 +5,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ByteBank.Extensoes\ByteBank.Extensoes.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.14.1" />
   </ItemGroup>
 
