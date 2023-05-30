@@ -11,12 +11,34 @@ using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
 using ByteBank.Modelos.Sistema;
 using ByteBank.SistemaAgencia;
+using ByteBank.SistemaAgencia.Comparadores;
 using ByteBank.SistemaAgencia.Extensoes;
 
 internal class Program
 {
 	private static void Main(string[] args)
 	{
+		var idades = new List<int>();
+		
+		idades.AdicionarVarios(10, 20, 30);
+		idades.AdicionarVarios(1, 99);
+
+		for(int i = 0; i < idades.Count; i++)
+		{
+			Console.WriteLine(idades[i]);
+		}
+
+		idades.Sort();
+
+		Console.WriteLine("\n-------------\n");
+		for(int i = 0; i < idades.Count; i++)
+		{
+			Console.WriteLine(idades[i]);
+		}
+		
+		
+		
+		Console.WriteLine("\n-------------\n");
 		var nomes = new List<string>()
 		{
 			"Stelle",
@@ -30,7 +52,7 @@ internal class Program
 		{
 			Console.WriteLine(nome);
 		}
-		Console.WriteLine("-------------");
+		Console.WriteLine("\n-------------\n");
 		nomes.Sort();
 
 		foreach (var nome in nomes)
@@ -40,24 +62,40 @@ internal class Program
 		
 
 
-		Console.WriteLine("\n-------------");
-		var idades = new List<int>();
+		Console.WriteLine("\n-------------\n");
+		var contas = new List<ContaCorrente>()
+		{
+			new ContaCorrente(42, 5),
+			new ContaCorrente(45, 4),
+			new ContaCorrente(43, 2),
+			new ContaCorrente(41, 3),
+			new ContaCorrente(44, 1),
+		};
+
+		foreach (var conta in contas)
+		{
+			Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+		}
+
+		contas.Sort();
+
+		Console.WriteLine("\n-------------\n");
+		foreach (var conta in contas)
+		{
+			Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+		}
+
+		contas.Sort(new ComparadorContaCorrentePorAgencia());
+
+		Console.WriteLine("\n-------------\n");
+		foreach (var conta in contas)
+		{
+			Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+		}
 		
-		idades.AdicionarVarios(10, 20, 30);
-		idades.AdicionarVarios(1, 99);
 
-		for(int i = 0; i < idades.Count; i++)
-		{
-			Console.WriteLine(idades[i]);
-		}
-
-		idades.Sort();
-
-		Console.WriteLine("-------------");
-		for(int i = 0; i < idades.Count; i++)
-		{
-			Console.WriteLine(idades[i]);
-		}
+		Console.WriteLine("\n-------------\n");
+		Console.WriteLine($"Encerrado em {DateTime.Now.TimeOfDay}");
 	}
 
 	static void SomarNumeros(int[] lista)

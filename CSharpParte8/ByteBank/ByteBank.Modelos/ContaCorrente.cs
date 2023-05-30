@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Modelos
 {
-	public class ContaCorrente
+	public class ContaCorrente : IComparable
 	{
 		public static double TaxaOperacao { get; private set; }
 		public int ContadorSaquesNaoPermitidos { get; private set; }
@@ -115,8 +115,25 @@ namespace ByteBank.Modelos
 			return base.GetHashCode();
 		}
 
-// Getters & Setters não precisam ser definidos aqui, podendo ser inseridos
-// diretamente na declaração das propriedades!
+		public int CompareTo(object? obj)
+		{
+			var outraConta = obj as ContaCorrente;
+
+			if(this.Conta < outraConta.Conta || outraConta == null)
+			{
+				return -1;
+			}
+
+			if(this.Conta == outraConta.Conta)
+			{
+				return 0;
+			}
+
+			return +1;
+		}
+
+		// Getters & Setters não precisam ser definidos aqui, podendo ser inseridos
+		// diretamente na declaração das propriedades!
 		// public double GetSaldo()
 		// {
 		// 	return this.saldo;
