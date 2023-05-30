@@ -3,16 +3,14 @@ using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Numerics;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using ByteBank.Extensoes;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
 using ByteBank.Modelos.Sistema;
 using ByteBank.SistemaAgencia;
-
-
-
-
 
 
 internal class Program
