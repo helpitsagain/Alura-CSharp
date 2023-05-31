@@ -18,50 +18,6 @@ internal class Program
 {
 	private static void Main(string[] args)
 	{
-		var idades = new List<int>();
-		
-		idades.AdicionarVarios(10, 20, 30);
-		idades.AdicionarVarios(1, 99);
-
-		for(int i = 0; i < idades.Count; i++)
-		{
-			Console.WriteLine(idades[i]);
-		}
-
-		idades.Sort();
-
-		Console.WriteLine("\n-------------\n");
-		for(int i = 0; i < idades.Count; i++)
-		{
-			Console.WriteLine(idades[i]);
-		}
-		
-		
-		
-		Console.WriteLine("\n-------------\n");
-		var nomes = new List<string>()
-		{
-			"Stelle",
-			"March",
-			"Dan Heng",
-			"Welt",
-			"Himeko"
-		};
-
-		foreach (var nome in nomes)
-		{
-			Console.WriteLine(nome);
-		}
-		Console.WriteLine("\n-------------\n");
-		nomes.Sort();
-
-		foreach (var nome in nomes)
-		{
-			Console.WriteLine(nome);
-		}
-		
-
-
 		Console.WriteLine("\n-------------\n");
 		var contas = new List<ContaCorrente>()
 		{
@@ -75,57 +31,19 @@ internal class Program
 			new ContaCorrente(44, 1),
 		};
 
-		// Console.WriteLine("Contas sem ordenação:");
-		// foreach (var conta in contas)
-		// {
-		// 	Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
-		// }
-
-		// contas.Sort();
-		// Console.WriteLine("\n-------------\n");
-		// Console.WriteLine("Ordenado por número da conta:");
-		// foreach (var conta in contas)
-		// {
-		// 	Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
-		// }
-
-		// contas.Sort(new ComparadorContaCorrentePorAgencia());
-		// Console.WriteLine("\n-------------\n");
-		// Console.WriteLine("Ordenado por número da agência usando IComparer:");
-		// foreach (var conta in contas)
-		// {
-		// 	Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
-		// }
-		
-		Console.WriteLine("\n-------------\n");
-		Console.WriteLine("Ordenado por número da agência usando OrderBy:");
-		// IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta => conta.Agencia);
-		var contasOrdenadas = contas.OrderBy(conta => {
-			if (conta == null)
-			{
-				return int.MaxValue;
-			}
-
-			return conta.Agencia;
-		});
+		Console.WriteLine("Ordenado por número da agência usando Where e OrderBy (linq):");
+		var contasOrdenadas = contas
+			.Where(conta => conta != null)
+			.OrderBy(conta => conta.Agencia);
 		foreach (var conta in contasOrdenadas)
 		{
-			if(conta != null)
-			{
-				Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
-			}
+			Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
 		}
 		
 
 		Console.WriteLine("\n-------------\n");
 		Console.WriteLine($"Encerrado em {DateTime.Now.TimeOfDay}");
 
-		var meses = new List<string>() { "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro" };
-		var mesesOrdenados = meses.OrderBy(mes => mes);
-		foreach(var mes in mesesOrdenados)
-		{
-			Console.WriteLine(mes);
-		}
 	}
 
 	static void SomarNumeros(int[] lista)
