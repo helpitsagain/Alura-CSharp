@@ -67,35 +67,65 @@ internal class Program
 		{
 			new ContaCorrente(42, 5),
 			new ContaCorrente(45, 4),
+			null,
 			new ContaCorrente(43, 2),
 			new ContaCorrente(41, 3),
+			null,
+			null,
 			new ContaCorrente(44, 1),
 		};
 
-		foreach (var conta in contas)
-		{
-			Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
-		}
+		// Console.WriteLine("Contas sem ordenação:");
+		// foreach (var conta in contas)
+		// {
+		// 	Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+		// }
 
-		contas.Sort();
+		// contas.Sort();
+		// Console.WriteLine("\n-------------\n");
+		// Console.WriteLine("Ordenado por número da conta:");
+		// foreach (var conta in contas)
+		// {
+		// 	Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+		// }
 
+		// contas.Sort(new ComparadorContaCorrentePorAgencia());
+		// Console.WriteLine("\n-------------\n");
+		// Console.WriteLine("Ordenado por número da agência usando IComparer:");
+		// foreach (var conta in contas)
+		// {
+		// 	Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+		// }
+		
 		Console.WriteLine("\n-------------\n");
-		foreach (var conta in contas)
-		{
-			Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
-		}
+		Console.WriteLine("Ordenado por número da agência usando OrderBy:");
+		// IOrderedEnumerable<ContaCorrente> contasOrdenadas = contas.OrderBy(conta => conta.Agencia);
+		var contasOrdenadas = contas.OrderBy(conta => {
+			if (conta == null)
+			{
+				return int.MaxValue;
+			}
 
-		contas.Sort(new ComparadorContaCorrentePorAgencia());
-
-		Console.WriteLine("\n-------------\n");
-		foreach (var conta in contas)
+			return conta.Agencia;
+		});
+		foreach (var conta in contasOrdenadas)
 		{
-			Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+			if(conta != null)
+			{
+				Console.WriteLine($"Agência: {conta.Agencia} | Conta: {conta.Conta}");
+			}
 		}
 		
 
 		Console.WriteLine("\n-------------\n");
 		Console.WriteLine($"Encerrado em {DateTime.Now.TimeOfDay}");
+
+		var meses = new List<string>() { "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro" };
+		var mesesOrdenados = meses.OrderBy(mes => mes);
+		foreach(var mes in mesesOrdenados)
+		{
+			Console.WriteLine(mes);
+		}
 	}
 
 	static void SomarNumeros(int[] lista)
