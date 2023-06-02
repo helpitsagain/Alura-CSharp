@@ -34,5 +34,20 @@ namespace ByteBankIO
 				Console.WriteLine("Execução finalizada!!");
 			}
 		}
+
+		static void TestaEscrita()
+		{
+			var caminhoArquivo = "../teste.txt";
+
+			using(var fluxoDeArquivo = new FileStream(caminhoArquivo, FileMode.Create))
+			using(var escritor = new StreamWriter(fluxoDeArquivo))
+			{
+				for(int i = 1; i < 1000; i++)
+				{
+					escritor.WriteLine($"Linha {i}");
+					Console.WriteLine($"Linha {i} foi escrita em {caminhoArquivo}");
+				}
+			}
+		}
     }
 }

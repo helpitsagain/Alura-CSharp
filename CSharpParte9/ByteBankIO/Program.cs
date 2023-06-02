@@ -16,7 +16,8 @@ namespace ByteBankIO
 	{
 		static void Main(string[] args)
 		{
-			CriarArquivoComWriter();
+			EscritorBinario();
+			LeitorBinario();
 		}
 	}
 }
