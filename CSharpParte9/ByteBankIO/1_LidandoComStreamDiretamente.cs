@@ -11,36 +11,33 @@ namespace ByteBankIO
 {
     partial class Program
     {
-        static void LidandoComFileStreamDiretamente()
+        static void LidandoComFileStreamDiretamente(string caminho)
         {
-            var enderecoDoArquivo = "contas.txt";
+			var enderecoDoArquivo = caminho;
+			var contaIteracoes = 0;
 
-            using (var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
-            {
-                var buffer = new byte[1024]; // 1 kb
-                var numeroDeBytesLidos = -1;
+			using (var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
+			{
+				var buffer = new byte[1024]; // 1 kb
+				var bytesLivres = -1;
 
-                while (numeroDeBytesLidos != 0)
-                {
-                    numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
-                    Console.WriteLine($"Bytes lidos: {numeroDeBytesLidos}");
-                    EscreverBuffer(buffer, numeroDeBytesLidos);
-                }
-            }
+				while(bytesLivres != 0)
+				{
+					contaIteracoes++;
+					bytesLivres = fluxoDoArquivo.Read(buffer, 0, buffer.Length);
+					EscreverBuffer(buffer, bytesLivres);
+				}
+			}
+
+			Console.WriteLine($"\nTotal de iterações: {contaIteracoes}");
         }
 
-        static void EscreverBuffer(byte[] buffer, int bytesLidos)
-        {
-            var utf8 = Encoding.Default;
-
-            var texto = utf8.GetString(buffer, 0, bytesLidos);
-            Console.Write(texto);
-
-            //foreach (var meuByte in buffer)
-            //{
-            //    Console.Write(meuByte);
-            //    Console.Write(" ");
-            //}
-        }
+		static void EscreverBuffer(byte[] buffer, int bytesLidos)
+		{
+			var utf8 = new UTF8Encoding();
+			var texto = utf8.GetString(buffer, 0, bytesLidos);
+			
+			Console.WriteLine(texto);
+		}
     }
 }
