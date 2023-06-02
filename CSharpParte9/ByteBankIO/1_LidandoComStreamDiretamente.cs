@@ -19,13 +19,13 @@ namespace ByteBankIO
 			using (var fluxoDoArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
 			{
 				var buffer = new byte[1024]; // 1 kb
-				var bytesLivres = -1;
+				var bytesLidos = -1;
 
-				while(bytesLivres != 0)
+				while(bytesLidos != 0)
 				{
 					contaIteracoes++;
-					bytesLivres = fluxoDoArquivo.Read(buffer, 0, buffer.Length);
-					EscreverBuffer(buffer, bytesLivres);
+					bytesLidos = fluxoDoArquivo.Read(buffer, 0, buffer.Length);
+					EscreverBuffer(buffer, bytesLidos);
 				}
 			}
 

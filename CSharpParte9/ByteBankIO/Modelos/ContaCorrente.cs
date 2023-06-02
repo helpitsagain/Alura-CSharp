@@ -26,7 +26,6 @@ namespace ByteBankIO.Modelos
 			}
 
 			Saldo += valor;
-			Console.WriteLine($"Depósito efetuado. Novo saldo: R${Saldo}");
 		}
 
 		public void Sacar(double valor)
@@ -41,7 +40,6 @@ namespace ByteBankIO.Modelos
 	        }
 
 	        Saldo -= valor;
-	        Console.WriteLine($"Saque efetuado. Saldo restante: R${Saldo}");
 	    }
     }
 }
