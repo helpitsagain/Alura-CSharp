@@ -16,8 +16,20 @@ namespace ByteBankIO
 	{
 		static void Main(string[] args)
 		{
-			EscritorBinario();
-			LeitorBinario();
+			var linhas = File.ReadAllLines("../contas.txt");
+			Console.WriteLine(linhas.Length);
+
+			foreach (var linha in linhas)
+			{
+				var linhaFormatada = linha.Replace(';', ' ');
+				Console.WriteLine(linhaFormatada);
+			}
+
+			var bytesLidos = File.ReadAllBytes("../contas.txt");
+			Console.WriteLine($"O arquivo contas.txt tem {bytesLidos.Length} bytes.");
+
+			File.WriteAllText("../contas.copia.txt", "Cópia de contas.txt\n\n");
+			File.AppendAllLines("../contas.copia.txt", linhas);
 		}
 	}
 }

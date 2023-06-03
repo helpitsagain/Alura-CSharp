@@ -11,24 +11,26 @@ namespace ByteBankIO
     {
         static void UsarStreamDeEntrada()
         {
-            using (var fluxoDeEntrada = Console.OpenStandardInput())
-            using (var fs = new FileStream("entradaConsole.txt", FileMode.Create))
-            {
-                var buffer = new byte[1024]; // 1 kb
+            using(var fluxoDeEntrada = Console.OpenStandardInput())
+			using(var fs = new FileStream("../entradaConsole.txt", FileMode.Create))
+			using(var escritor = new StreamWriter(fs, Encoding.UTF8))
+			{
+				var buffer = new byte[1024];
+				
+				var continua = true;
+				while(continua)
+				{
+					var bytesLidos = fluxoDeEntrada.Read(buffer, 0, buffer.Length);
 
-                while (true)
-                {
-                    var bytesLidos = fluxoDeEntrada.Read(buffer, 0, 1024);
+					escritor.WriteLine(fluxoDeEntrada);
+					escritor.Flush();
 
-                    fs.Write(buffer, 0, bytesLidos);
-                    fs.Flush();
+					Console.WriteLine($"Bytes lidos: {bytesLidos}");
 
-                    Console.WriteLine($"Bytes lidos da console: {bytesLidos}");
-                }
-            }
+					if(bytesLidos == 1) { continua = false; }
+				}
+
+			}
         }
-
-
-
     }
 }
