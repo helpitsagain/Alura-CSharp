@@ -18,7 +18,7 @@ public class FilmeControllers : ControllerBase
 	private static int id = 0;
 
 	[HttpPost]
-	public CreatedAtActionResult AdicionarFilme([FromBody] Filme filme)
+	public IActionResult AdicionarFilme([FromBody] Filme filme)
 	{
 		filme.Id = id++;
 		filmes.Add(filme);
